@@ -1,0 +1,18 @@
+{{- template "layout" .}}
+{{- define "title"}}Lista de entradas{{end}}
+{{- define "content"}}
+    <main class="list">
+    {{- range .}}
+        <section class="item">
+            <h2><a href="/view/{{.ID}}">{{.Title}}</a></h2>
+            {{- if .IsAllDay}}
+            <p>{{formatTime .Date "Monday, 2/1/2006"}} — {{.Author}}</p>
+            {{- else}}
+            <p>{{formatTime .Date "Monday, 2/1/2006 15:04"}} — {{.Author}}</p>
+            {{- end}}
+        </section>
+    {{- else}}
+        <h1>No hay entradas</h1>
+    {{- end}}
+    </main>
+{{- end -}}

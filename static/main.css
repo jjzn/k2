@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: 100% sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    max-width: 60ch;
+    margin: auto;
+
+    --fg: black;
+    --bg: white;
+    --gray: #eee;
+    --gray-faded: #eee8;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --fg: white;
+        --bg: black;
+        --gray: #1a1a1a;
+        --gray-faded: #1a1a1a88;
+    }
+
+    a { color: #67f; }
+
+}
+
+header, main { padding: 1em; }
+nav { padding: 0 1em; }
+
+main.grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-auto-rows: minmax(60px, auto);
+    gap: 2px;
+}
+
+main.grid:nth-child(-n+7) { text-align: center; }
+
+main.grid > * { outline: 2px solid var(--gray); padding: .5em; }
+main.grid .item {
+    margin: 0;
+
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+main.grid .filler-day {
+    background: var(--gray-faded);
+}
+
+header, nav, .vert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav, .vert { flex-wrap: wrap; }
+
+.child-flex > * { flex: 1; }
+
+/* TODO: remove */
+@supports not (gap: 1rem) {
+    :is(header, nav, .vert) * + * {
+        margin-left: 1rem;
+    }
+}
+
+header > h1 > a { all: unset; }
+header > h1 > a:visited { color: currentcolor; }
+
+nav a.current { color: var(--fg); }
+
+form, .item {
+    display: flex;
+    flex-direction: column;
+}
+
+main > .item { padding: 1em; }
+main > .item a { text-decoration: none; }
+
+form { margin-top: .5em; }
+form * { width: 100%; }
+form label { font-weight: bold; display: block; }
+form input, form textarea { margin-bottom: 1em; }
+
+form :user-invalid { border-color: red; }
+
+.item + .item { margin-top: 1em; }
+.item > * + * { margin-top: .75em; }
+
+button, input, textarea {
+    font: inherit;
+    color: var(--fg);
+    background: var(--gray);
+
+    padding: .5em;
+    min-width: 100px;
+    border: 2px solid var(--gray);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+button {
+    background: var(--gray);
+    font-weight: bold;
+    padding: .5em 1em;
+}
+
+textarea { resize: none; }
+
+:is(button, input, textarea):focus {
+    border-color: gray;
+    outline: none;
+}

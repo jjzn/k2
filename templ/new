@@ -1,0 +1,64 @@
+{{- template "layout" .}}
+{{- define "title"}}
+    {{- if eq .Title "" -}}
+        Nueva
+    {{- else -}}
+        Actualizar
+    {{- end}} entrada
+{{- end}}
+{{- define "content"}}
+    <main class="form">
+        <h1>
+            {{- if eq .Title "" -}}
+                Nueva
+            {{- else -}}
+                Actualizar
+            {{- end}} entrada</h1>
+
+        <form action="
+            {{- if eq .Title "" -}}
+                /add
+            {{- else -}}
+                /update/{{.ID}}
+            {{- end}}" method="post">
+            <label for="title">Título</label>
+            <input type="text" name="title" value="{{.Title}}" required/>
+
+            <label for="author">Autor</label>
+            <input type="text" name="author" value="{{.Author}}" required/>
+
+            <div class="vert child-flex" style="gap: 0 1rem">
+                <div>
+                    <label for="date">Fecha</label>
+                    <input type="date" name="date" {{if not .Date.IsZero}}value="{{.Date.Format "2006-01-02"}}"{{end}} required/>
+                </div>
+
+                <div>
+                    <label for="time">Hora (opcional)</label>
+                    <input type="time" name="time" {{if not .Date.IsZero}}value="{{.Date.Format "15:04"}}"{{end}}/>
+                </div>
+
+                <div>
+                    <label for="end">Final (opcional)</label>
+                    <input type="time" name="end" {{if not .End.IsZero}}value="{{.End.Format "15:04"}}"{{end}}/>
+                </div>
+            </div>
+
+            <label for="desc">Descripción (opcional)</label>
+            <textarea
+                rows="5"
+                name="desc"
+                oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';">
+                    {{- .Description -}}
+            </textarea>
+
+            <button>
+                {{- if eq .Title "" -}}
+                    Crear
+                {{- else -}}
+                    Actualizar
+                {{- end -}}
+            </button>
+        </form>
+    </main>
+{{- end -}}

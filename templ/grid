@@ -1,0 +1,25 @@
+{{- template "layout" .}}
+{{- define "title"}}Vista de entradas{{end}}
+{{- define "content"}}
+    <main class="grid">
+        <div><b>Lun</b></div>
+        <div><b>Mar</b></div>
+        <div><b>Mié</b></div>
+        <div><b>Jue</b></div>
+        <div><b>Vie</b></div>
+        <div><b>Sáb</b></div>
+        <div><b>Dom</b></div>
+
+    {{- range .Filler}}
+        <div class="filler-day"></div>
+    {{- end}}
+    {{- range $i, $v := .Days}}
+        <div>
+            <p><b>{{add $i 1}}</b></p>
+        {{- range $i, $v := $v}}
+            <a href="/view/{{$v.ID}}" class="item">{{.Title}}</a>
+        {{- end}}
+        </div>
+    {{- end}}
+    </main>
+{{- end -}}

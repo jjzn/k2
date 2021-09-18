@@ -1,0 +1,29 @@
+{{- template "layout" .}}
+{{- define "title"}}{{.Title}}{{end}}
+{{- define "content"}}
+    <main class="item">
+        <h1>{{.Title}}</h1>
+        <div class="vert">
+            <a href="/delete/{{.ID}}">
+                <button onclick="return confirm('Seguro que quieres eliminar permanentemente esta entrada?');">Eliminar entrada</button>
+            </a>
+
+            <a href="/edit/{{.ID}}"><button>Editar entrada</button></a>
+        </div>
+        {{- $date := ""}}
+        {{- if .IsAllDay}}
+            {{- $date = formatTime .Date "Monday, 2/1/2006"}}
+        {{- else}}
+            {{- $date = formatTime .Date "Monday, 2/1/2006 15:04"}}
+        {{- end}}
+
+        {{- if not .End.IsZero}}
+            {{- $date = printf "%s — hasta las %s" $date (.End.Format "15:04")}}
+        {{- end}}
+        <p>{{$date}} — {{.Author}}</p>
+
+        <p id="desc" style="white-space: pre-wrap">{{.Description}}</p>
+    </main>
+
+    <script src="/static/link.js"></script>
+{{- end -}}
