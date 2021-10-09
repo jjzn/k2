@@ -1,4 +1,4 @@
-package main
+package k2
 
 import (
 	"encoding/json"
