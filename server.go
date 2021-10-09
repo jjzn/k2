@@ -73,7 +73,8 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		return Item{}
 	}
 
-	end, err := time.Parse("15:04", r.PostForm.Get("end"))
+	end_dt := r.PostForm.Get("end-date") + ` ` + r.PostForm.Get("end-time")
+	end, err := time.Parse("2006-01-02 15:04", end_dt)
 	if err != nil {
 		end = time.Time{}
 	}
