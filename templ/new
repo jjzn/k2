@@ -39,8 +39,13 @@
                 </div>
 
                 <div>
-                    <label for="end">Final (opcional)</label>
-                    <input type="time" name="end" {{if not .End.IsZero}}value="{{.End.Format "15:04"}}"{{end}}/>
+                    <label for="end-date">Fecha final (opcional)</label>
+                    <input type="time" name="end-date" {{if not .End.IsZero}}value="{{.End.Format "2006-01-02"}}"{{end}}/>
+                </div>
+                
+                <div>
+                    <label for="end-time">Hora final (opcional)</label>
+                    <input type="time" name="end-time" {{if not .End.IsZero}}value="{{.End.Format "15:04"}}"{{end}}/>
                 </div>
             </div>
 
