@@ -34,6 +34,9 @@ var data DB
 var entryForm = template.Must(
 	template.New("new").ParseFiles("templ/layout", "templ/new"))
 
+var rssTempl = template.Must(
+	template.New("rss").ParseFiles("templ/rss"))
+
 func (i Item) key() string {
 	return i.ID
 }
@@ -127,6 +130,13 @@ func handleEdit(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	}
 }
 
+func handleRSS(w http.ResponseWriter, r *http.Request, _ rt.Params) {
+	log.Println("generating RSS feed")
+	if err := rssTempl.Execute(w, data.Items()); err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 	log.Println("opening database")
 	d, err := OpenDB("data.json")
@@ -179,7 +189,9 @@ func main() {
 	r.GET("/api/v1/date/:year/:month/:day", apiDay)
 	r.GET("/api/v1/id/:id", apiItem)
 
+	r.GET("/rss", handleRSS)
 	r.GET("/", handleIndex)
+
 	r.ServeFiles("/static/*filepath", http.Dir("static"))
 	r.ServeFiles("/docs/*filepath", http.Dir("docs"))
 
