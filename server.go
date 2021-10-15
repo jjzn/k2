@@ -22,7 +22,7 @@ import (
 type Item struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
-	Author      string    `json:"author"`
+	Persons     string    `json:"pers"`
 	Description string    `json:"desc"`
 	Date        time.Time `json:"date"`
 	End         time.Time `json:"end"`
@@ -52,10 +52,10 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	}
 
 	title := strings.TrimSpace(r.PostForm.Get("title"))
-	author := strings.TrimSpace(r.PostForm.Get("author"))
+	persons := strings.TrimSpace(r.PostForm.Get("persons"))
 
-	if title == "" || author == "" {
-		failBadRequest("missing field (title, author)\n")
+	if title == "" || persons == "" {
+		failBadRequest("missing field (title, persons)\n")
 		return Item{}
 	}
 
@@ -82,7 +82,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		end = time.Time{}
 	}
 
-	return Item{id, title, author, desc, date, end, all_day}
+	return Item{id, title, persons, desc, date, end, all_day}
 }
 
 func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {

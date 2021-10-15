@@ -5,11 +5,11 @@
         <description>Todas las actualizaciones en k2</description>
         <link>http://k2.test/</link>
 
-        {{for .}}
+        {{range .}}
         <item>
             <title>{{.Title}}</title>
             <link>http://k2.test/view/{{.ID}}</link>
-            <author>{{.Author}}</author>
+            <author>{{.Persons}}</author>
             <pubDate>{{.Date.Format "Mon, 02 Jan 2006 15:04:05 -0700"}}</pubDate>
             <description>{{.Description}}</description>
         </item>

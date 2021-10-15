@@ -20,7 +20,7 @@
         {{- if not .End.IsZero}}
             {{- $date = printf "%s — hasta el día %s las %s" $date (.End.Format "2/1/2006") (.End.Format "15:04")}}
         {{- end}}
-        <p>{{$date}} — {{.Author}}</p>
+        <p>{{$date}} — {{.Persons}}</p>
 
         <p id="desc" style="white-space: pre-wrap">{{.Description}}</p>
     </main>
