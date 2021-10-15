@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 
 	rt "github.com/julienschmidt/httprouter"
@@ -16,6 +17,7 @@ var fns = template.FuncMap{
 		return a + b
 	},
 	"formatTime": formatTime,
+	"join": strings.Join,
 }
 
 var list = template.Must(

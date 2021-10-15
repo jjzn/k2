@@ -6,9 +6,9 @@
         <section class="item">
             <h2><a href="/view/{{.ID}}">{{.Title}}</a></h2>
             {{- if .IsAllDay}}
-            <p>{{formatTime .Date "Monday, 2/1/2006"}} — {{.Persons}}</p>
+            <p>{{formatTime .Date "Monday, 2/1/2006"}} — {{join .Persons ", "}}</p>
             {{- else}}
-            <p>{{formatTime .Date "Monday, 2/1/2006 15:04"}} — {{.Persons}}</p>
+            <p>{{formatTime .Date "Monday, 2/1/2006 15:04"}} — {{join .Persons ", "}}</p>
             {{- end}}
         </section>
     {{- else}}

@@ -25,7 +25,7 @@
             <input type="text" name="title" value="{{.Title}}" required/>
 
             <label for="persons">Personas</label>
-            <input type="text" name="persons" value="{{.Persons}}" required/>
+            <input type="text" name="persons" value="{{join .Persons ", "}}" required/>
 
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
