@@ -1,4 +1,4 @@
-package k2
+package main
 
 import (
 	"fmt"
