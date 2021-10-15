@@ -22,7 +22,7 @@ import (
 type Item struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
-	Persons     string    `json:"pers"`
+	Persons     []string  `json:"pers"`
 	Description string    `json:"desc"`
 	Date        time.Time `json:"date"`
 	End         time.Time `json:"end"`
@@ -52,9 +52,11 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	}
 
 	title := strings.TrimSpace(r.PostForm.Get("title"))
-	persons := strings.TrimSpace(r.PostForm.Get("persons"))
+	persons := strings.Split(
+		strings.TrimSpace(r.PostForm.Get("persons")),
+		", ")
 
-	if title == "" || persons == "" {
+	if title == "" || len(persons) == 0 {
 		failBadRequest("missing field (title, persons)\n")
 		return Item{}
 	}
@@ -88,7 +90,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	id := uuid.New().String()
 	item := parseItem(w, r, id)
-	if item == (Item{}) {
+	if item.Title == "" {
 		return
 	}
 
@@ -99,7 +101,7 @@ func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 func handleUpdate(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	id := ps.ByName("id")
 	item := parseItem(w, r, id)
-	if item == (Item{}) {
+	if item.Title == "" {
 		return
 	}
 
