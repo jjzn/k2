@@ -24,8 +24,8 @@
             <label for="title">Título</label>
             <input type="text" name="title" value="{{.Title}}" required/>
 
-            <label for="author">Autor</label>
-            <input type="text" name="author" value="{{.Author}}" required/>
+            <label for="persons">Personas</label>
+            <input type="text" name="persons" value="{{.Persons}}" required/>
 
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
