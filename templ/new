@@ -24,7 +24,7 @@
             <label for="title">Título</label>
             <input type="text" name="title" value="{{.Title}}" required/>
 
-            <label for="persons">Personas</label>
+            <label for="persons">Personas (separados por comas)</label>
             <input type="text" name="persons" value="{{join .Persons ", "}}" required/>
 
             <div class="vert child-flex" style="gap: 0 1rem">

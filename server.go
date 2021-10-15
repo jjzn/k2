@@ -6,6 +6,7 @@ import (
 
 	"flag"
 	"strings"
+	"sort"
 	"time"
 
 	"fmt"
@@ -32,10 +33,10 @@ type Item struct {
 var data DB
 
 var entryForm = template.Must(
-	template.New("new").ParseFiles("templ/layout", "templ/new"))
+	template.New("new").Funcs(fns).ParseFiles("templ/layout", "templ/new"))
 
 var rssTempl = template.Must(
-	template.New("rss").ParseFiles("templ/rss"))
+	template.New("rss").Funcs(fns).ParseFiles("templ/rss"))
 
 func (i Item) key() string {
 	return i.ID
@@ -55,6 +56,8 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	persons := strings.Split(
 		strings.TrimSpace(r.PostForm.Get("persons")),
 		", ")
+
+	sort.Strings(persons)
 
 	if title == "" || len(persons) == 0 {
 		failBadRequest("missing field (title, persons)\n")
