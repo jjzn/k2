@@ -78,6 +78,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		return Item{}
 	}
 
+	// TODO: handle one field missing
 	end_dt := r.PostForm.Get("end-date") + ` ` + r.PostForm.Get("end-time")
 	end, err := time.Parse("2006-01-02 15:04", end_dt)
 	if err != nil {

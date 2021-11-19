@@ -40,7 +40,7 @@
 
                 <div>
                     <label for="end-date">Fecha final (opcional)</label>
-                    <input type="time" name="end-date" {{if not .End.IsZero}}value="{{.End.Format "2006-01-02"}}"{{end}}/>
+                    <input type="date" name="end-date" {{if not .End.IsZero}}value="{{.End.Format "2006-01-02"}}"{{end}}/>
                 </div>
                 
                 <div>
