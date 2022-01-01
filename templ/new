@@ -35,7 +35,7 @@
 
                 <div>
                     <label for="time">Hora (opcional)</label>
-                    <input type="time" name="time" {{if not .Date.IsZero}}{{if not .Date.IsAllDay}}value="{{.Date.Format "15:04"}}"{{end}}{{end}}/>
+                    <input type="time" name="time" {{if not .Date.IsZero}}{{if not .IsAllDay}}value="{{.Date.Format "15:04"}}"{{end}}{{end}}/>
                 </div>
 
                 <div>
