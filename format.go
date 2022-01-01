@@ -23,9 +23,9 @@ func formatDates(
 	end_date time.Time, end_time time.Time) string {
 	var s string
 	if all_day {
-		s = t.Format("Monday, 2/1/2006 15:04")
-	} else {
 		s = t.Format("Monday, 2/1/2006")
+	} else {
+		s = t.Format("Monday, 2/1/2006 15:04")
 	}
 
 	if !end_date.IsZero() && !end_time.IsZero() {
