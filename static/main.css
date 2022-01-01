@@ -88,7 +88,7 @@ main > .item a { text-decoration: none; }
 form { margin-top: .5em; }
 form * { width: 100%; }
 form label { font-weight: bold; display: block; }
-form input, form textarea { margin-bottom: 1em; }
+form input, form textarea, form details { margin-bottom: 1em; }
 
 form :user-invalid { border-color: red; }
 
@@ -119,3 +119,17 @@ textarea { resize: none; }
     border-color: gray;
     outline: none;
 }
+
+details.add_field summary {
+    list-style: none;
+    font-weight: bold;
+
+    display: inline-block;
+    width: auto;
+
+    background: var(--gray);
+    padding: .5em 1em;
+}
+
+details.add_field[open] { margin: 0; }
+details.add_field[open] summary { display: none; }

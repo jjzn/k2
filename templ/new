@@ -49,13 +49,16 @@
                 </div>
             </div>
 
-            <label for="desc">Descripción (opcional)</label>
-            <textarea
-                rows="5"
-                name="desc"
-                oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';">
-                    {{- .Description -}}
-            </textarea>
+            <details class="add_field" {{if ne .Description ""}}open{{end}}>
+                <summary>Añadir descripción</summary>
+                <label for="desc">Descripción (opcional)</label>
+                <textarea
+                    rows="5"
+                    name="desc"
+                    oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';">
+                        {{- .Description -}}
+                </textarea>
+            </details>
 
             <button>
                 {{- if eq .Title "" -}}
