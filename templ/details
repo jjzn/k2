@@ -10,17 +10,7 @@
 
             <a href="/edit/{{.ID}}"><button>Editar entrada</button></a>
         </div>
-        {{- $date := ""}}
-        {{- if .IsAllDay}}
-            {{- $date = formatTime .Date "Monday, 2/1/2006"}}
-        {{- else}}
-            {{- $date = formatTime .Date "Monday, 2/1/2006 15:04"}}
-        {{- end}}
-
-        {{- if not .End.IsZero}}
-            {{- $date = printf "%s — hasta el día %s a las %s" $date (.End.Format "2/1/2006") (.End.Format "15:04")}}
-        {{- end}}
-        <p>{{$date}} — {{join .Persons ", "}}</p>
+        <p>{{formatDates .Date .IsAllDay .EndDate .EndTime}} — {{join .Persons ", "}}</p>
 
         <p id="desc" style="white-space: pre-wrap">{{.Description}}</p>
     </main>

@@ -26,7 +26,8 @@ type Item struct {
 	Persons     []string  `json:"pers"`
 	Description string    `json:"desc"`
 	Date        time.Time `json:"date"`
-	End         time.Time `json:"end"`
+	EndDate     time.Time `json:"end_date"`
+	EndTime     time.Time `json:"end_time"`
 	IsAllDay    bool      `json:"all_day"`
 }
 
@@ -81,14 +82,17 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		return Item{}
 	}
 
-	// TODO: handle one field missing
-	end_dt := r.PostForm.Get("end-date") + ` ` + r.PostForm.Get("end-time")
-	end, err := time.Parse("2006-01-02 15:04", end_dt)
+	end_date, err := time.Parse("2006-01-02", r.PostForm.Get("end-date"))
 	if err != nil {
-		end = time.Time{}
+		end_date = time.Time{}
 	}
 
-	return Item{id, title, persons, desc, date, end, all_day}
+	end_time, err := time.Parse("15:04", r.PostForm.Get("end-time"))
+	if err != nil {
+		end_time = time.Time{}
+	}
+
+	return Item{id, title, persons, desc, date, end_date, end_time, all_day}
 }
 
 func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {
