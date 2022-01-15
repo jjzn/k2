@@ -1,5 +1,5 @@
 {{- template "layout" .}}
-{{- define "title"}}{{.Title}}{{end}}
+{{- define "title"}}"{{.Title}}"{{end}}
 {{- define "content"}}
     <main class="item">
         <h1>{{.Title}}</h1>
