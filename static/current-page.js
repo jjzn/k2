@@ -1,4 +1,4 @@
-const link = document.querySelector(`a[href="${location.pathname}"]`);
+const link = document.querySelector(`nav a[href="${location.pathname}"]`);
 link.classList.add('current');
 
 const text = location.pathname === '/'
