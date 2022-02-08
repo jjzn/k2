@@ -53,6 +53,7 @@ func (db *DB) Set(key string, item Item) {
 	}
 
 	db.Map[key] = item
+	db.Write()
 }
 
 // Get returns the item associated with the given key.
@@ -70,12 +71,14 @@ func (db *DB) Insert(item Item) string {
 	}
 
 	db.Map[item.key()] = item
+	db.Write()
 	return item.key()
 }
 
 // Delete removes the database entry with the given key.
 func (db *DB) Delete(key string) {
 	delete(db.Map, key)
+	db.Write()
 }
 
 // Filter iterates over all database items and returns those for
