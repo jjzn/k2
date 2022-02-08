@@ -2,6 +2,7 @@ package main
 
 import "time"
 import "strings"
+import "fmt"
 
 func formatTime(t time.Time, fmt string) string {
 	s := t.Format(fmt)
@@ -23,9 +24,29 @@ func formatDates(
 	end_date time.Time, end_time time.Time) string {
 	var s string
 	if all_day {
-		s = t.Format("Monday, 2/1/2006")
+		s = formatTime(t, "Monday, 2/1/2006")
 	} else {
-		s = t.Format("Monday, 2/1/2006 15:04")
+		s = formatTime(t, "Monday, 2/1/2006 15:04")
+	}
+
+	y, m, d := time.Now().Date()
+	today := time.Date(y, m, d, 0, 0, 0, 0, time.Now().Location())
+
+	y, m, d = t.Date()
+	then := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+
+	diff := int(then.Sub(today).Hours() / 24)
+
+	if then.Before(today) {
+		diff--
+	}
+
+	if diff > 0 {
+		s += fmt.Sprintf(" (quedan %d días)", diff)
+	} else if diff < 0 {
+		s += fmt.Sprintf(" (hace %d días)", -diff)
+	} else {
+		s += " (hoy)"
 	}
 
 	if !end_date.IsZero() && !end_time.IsZero() {
