@@ -2,6 +2,7 @@
 {{- define "title"}}Vista de entradas{{end}}
 {{- define "content"}}
     <main class="grid">
+        <h1>{{.Month}}</h1>
         <div><b>Lun</b></div>
         <div><b>Mar</b></div>
         <div><b>Mié</b></div>

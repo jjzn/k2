@@ -4,6 +4,11 @@ import "time"
 import "strings"
 import "fmt"
 
+func formatMonth(m time.Month) string {
+	s := m.String()
+	return s
+}
+
 func formatTime(t time.Time, fmt string) string {
 	s := t.Format(fmt)
 

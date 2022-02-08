@@ -115,9 +115,11 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 	}
 
 	d := struct {
+		Month  string
 		Filler []int
 		Days   [][]Item
 	}{
+		formatMonth(month),
 		make([]int, (now.Weekday()+6)%7),
 		days,
 	}
