@@ -31,7 +31,7 @@ body {
 header, main { padding: 1em; }
 nav { padding: 0 1em; }
 
-main.grid {
+.grid {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-template-rows: auto;
@@ -39,10 +39,10 @@ main.grid {
     gap: 2px;
 }
 
-main.grid:nth-child(-n+7) { text-align: center; }
+.grid:nth-child(-n+7) { text-align: center; }
 
-main.grid > * { outline: 2px solid var(--gray); padding: .5em; }
-main.grid .item {
+.grid > * { outline: 2px solid var(--gray); padding: .5em; }
+.grid .item {
     margin: 0;
 
     display: block;
@@ -51,9 +51,11 @@ main.grid .item {
     text-overflow: ellipsis;
 }
 
-main.grid .filler-day {
+.grid .filler-day {
     background: var(--gray-faded);
 }
+
+h1 + .grid { margin-top: .5em; }
 
 header, nav, .vert {
     display: flex;
