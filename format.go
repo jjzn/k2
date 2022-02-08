@@ -6,6 +6,20 @@ import "fmt"
 
 func formatMonth(m time.Month) string {
 	s := m.String()
+
+	s = strings.Replace(s, "January", "Enero", -1)
+	s = strings.Replace(s, "February", "Febrero", -1)
+	s = strings.Replace(s, "March", "Marzo", -1)
+	s = strings.Replace(s, "April", "Abril", -1)
+	s = strings.Replace(s, "May", "Mayo", -1)
+	s = strings.Replace(s, "June", "Junio", -1)
+	s = strings.Replace(s, "July", "Julio", -1)
+	s = strings.Replace(s, "August", "Agosto", -1)
+	s = strings.Replace(s, "September", "Septiembre", -1)
+	s = strings.Replace(s, "October", "Octubre", -1)
+	s = strings.Replace(s, "November", "Noviembre", -1)
+	s = strings.Replace(s, "December", "Diciembre", -1)
+
 	return s
 }
 
