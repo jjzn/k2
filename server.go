@@ -187,6 +187,7 @@ func main() {
 	r.GET("/view/:id", handleView)
 	r.GET("/edit/:id", handleEdit)
 	r.GET("/date/:year/:month/:day", handleFilterDate)
+	r.GET("/date/:year/:month", handleFilterMonth)
 
 	r.GET("/today", handleToday)
 	r.GET("/tomorrow", handleTomorrow)

@@ -129,6 +129,24 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 	}
 }
 
+func handleFilterMonth(w http.ResponseWriter, r *http.Request, ps rt.Params) {
+	year, err := strconv.Atoi(ps.ByName("year"))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "cannot parse year\n")
+		return
+	}
+
+	date, err := time.Parse("1", ps.ByName("month"))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "cannot parse month\n")
+		return
+	}
+
+	handleMonth(year, date.Month(), w)
+}
+
 func handleThisMonth(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	year, month, _ := time.Now().Date()
 	handleMonth(year, month, w)
