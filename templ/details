@@ -9,6 +9,8 @@
             </a>
 
             <a href="/edit/{{.ID}}"><button>Editar entrada</button></a>
+
+            <a href="/invite/{{.ID}}"><button>Invitar personas</button></a>
         </div>
         <p>{{formatDates .Date .IsAllDay .EndDate .EndTime}} — {{join .Persons ", "}}</p>
 
