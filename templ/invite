@@ -1,0 +1,18 @@
+{{- template "layout" .}}
+{{- define "title"}}
+Invitación a {{.Title}}
+{{- end}}
+{{- define "content"}}
+    <main class="form">
+        <h1>Invitación a {{.Title}}</h1>
+        <p>Te han invitado a <a href="/view/{{.ID}}">{{.Title}}</a> con: {{join .Persons ", "}}.</p>
+        <p>Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.</p>
+
+        <form action="/add-person/{{.ID}}" method="post">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" required/>
+
+            <button>Unirse</button>
+        </form>
+    </main>
+{{- end -}}
