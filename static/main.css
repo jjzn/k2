@@ -56,6 +56,7 @@ nav { padding: 0 1em; }
 }
 
 h1 + .grid { margin-top: .5em; }
+p { margin-top: .5em; }
 
 header, nav, .vert {
     display: flex;
