@@ -27,6 +27,8 @@ var grid = template.Must(
 	template.New("grid").Funcs(fns).ParseFiles("templ/layout", "templ/grid"))
 var details = template.Must(
 	template.New("details").Funcs(fns).ParseFiles("templ/layout", "templ/details"))
+var invite = template.Must(
+	template.New("invite").Funcs(fns).ParseFiles("templ/layout", "templ/invite"))
 
 func sortByDate(items []Item) func(int, int) bool {
 	return func(i, j int) bool {
@@ -167,6 +169,19 @@ func handleView(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	}
 
 	if err := details.Execute(w, item); err != nil {
+		panic(err)
+	}
+}
+
+func handleInvite(w http.ResponseWriter, r *http.Request, ps rt.Params) {
+	item, ok := data.Get(ps.ByName("id"))
+	if !ok {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintf(w, "invite not found\n")
+		return
+	}
+
+	if err := invite.Execute(w, item); err != nil {
 		panic(err)
 	}
 }

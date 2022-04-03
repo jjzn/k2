@@ -114,6 +114,30 @@ func handleUpdate(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	http.Redirect(w, r, "/view/"+id, http.StatusSeeOther)
 }
 
+func handleAddPerson(w http.ResponseWriter, r *http.Request, ps rt.Params) {
+	id := ps.ByName("id")
+
+	if err := r.ParseForm(); err != nil {
+		panic(err)
+	}
+
+	name := r.PostForm.Get("name")
+	item, ok := data.Get(id)
+
+	if !ok {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprint(w, "item not found\n")
+		return
+	}
+
+	if name != "" {
+		item.Persons = append(item.Persons, name)
+		data.Set(id, item)
+	}
+
+	http.Redirect(w, r, "/view/"+id, http.StatusSeeOther)
+}
+
 func handleNew(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	if err := entryForm.Execute(w, Item{}); err != nil {
 		panic(err)
@@ -171,10 +195,12 @@ func main() {
 
 	r.POST("/add", handleAdd)
 	r.POST("/update/:id", handleUpdate)
+	r.POST("/add-person/:id", handleAddPerson)
 
 	r.GET("/new", handleNew)
 	r.GET("/delete/:id", handleDelete)
 	r.GET("/view/:id", handleView)
+	r.GET("/invite/:id", handleInvite)
 	r.GET("/edit/:id", handleEdit)
 	r.GET("/date/:year/:month/:day", handleFilterDate)
 	r.GET("/date/:year/:month", handleFilterMonth)
