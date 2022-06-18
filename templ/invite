@@ -5,6 +5,10 @@ Invitación a {{.Title}}
 {{- define "content"}}
     <main class="form">
         <h1>Invitación a {{.Title}}</h1>
+        <button
+            onclick="navigator.share({ title: 'Invitación a {{.Title}}', url: location.href })">
+            Compartir invitación
+        </button>
         <p>Te han invitado a <a href="/view/{{.ID}}">{{.Title}}</a> con: {{join .Persons ", "}}.</p>
         <p>Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.</p>
 
