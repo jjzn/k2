@@ -47,7 +47,7 @@ func isInDateRange(i Item, t time.Time) bool {
 	var year, day, hour, min int
 	var month time.Month
 
-	if i.EndDate.IsZero() {
+	if !i.EndDate.IsZero() {
 		year_end = i.EndDate.Year()
 		month_end = i.EndDate.Month()
 		day_end = i.EndDate.Day()
@@ -62,7 +62,7 @@ func isInDateRange(i Item, t time.Time) bool {
 		day = day_end
 	}
 
-	if i.EndTime.IsZero() {
+	if !i.EndTime.IsZero() {
 		hour_end = i.EndTime.Hour()
 		min_end = i.EndTime.Minute()
 	} else {
