@@ -1,7 +1,16 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <style>
-        text { font-weight: bold; }
+        text {
+            font-weight: bold;
+            font-size: 32px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            text {
+                fill: white;
+            }
+        }
     </style>
 
-    <text dominant-baseline="hanging">ϰ²</text>
+    <text y="50%" dominant-baseline="middle">ϰ²</text>
 </svg>
