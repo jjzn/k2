@@ -14,7 +14,7 @@ var localStrings = map[string]string{
 	"inviteInstructions": "Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.",
 
 	"labelTitle": "Título",
-	"labelPersons": "Personas (separadas por comas)",
+	"labelPersons": "Participantes (separados por comas)",
 	"labelDate": "Fecha",
 	"labelTime": "Hora (opcional)",
 	"labelEndDate": "Fecha final (opcional)",
