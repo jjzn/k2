@@ -134,7 +134,7 @@ func handleNextWeek(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 }
 
 func handleMonth(year int, month time.Month, w http.ResponseWriter) {
-	now := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
+	now := time.Date(year, month, 1, 0, 0, 0, 0, time.Now().Location())
 	n_days := now.AddDate(0, 1, -1).Day()
 
 	days := make([][]Item, n_days)
