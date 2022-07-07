@@ -1,5 +1,5 @@
 {{- template "layout" .}}
-{{- define "title"}}Vista de entradas{{end}}
+{{- define "title"}}{{string "gridViewTitle"}}{{end}}
 {{- define "content"}}
     <main>
         <h1>{{.Month}}</h1>

@@ -5,12 +5,12 @@
         <h1>{{.Title}}</h1>
         <div class="vert">
             <a href="/delete/{{.ID}}">
-                <button onclick="return confirm('Seguro que quieres eliminar permanentemente esta entrada?');">Eliminar entrada</button>
+                <button onclick="return confirm('{{string "removeItemConfirm"}}');">{{string "removeItem"}}</button>
             </a>
 
-            <a href="/edit/{{.ID}}"><button>Editar entrada</button></a>
+            <a href="/edit/{{.ID}}"><button>{{string "editItem"}}</button></a>
 
-            <a href="/invite/{{.ID}}"><button>Invitar personas</button></a>
+            <a href="/invite/{{.ID}}"><button>{{string "invite"}}</button></a>
         </div>
         <p>{{formatDates .Date .IsAllDay .EndDate .EndTime}} — {{join .Persons ", "}}</p>
 

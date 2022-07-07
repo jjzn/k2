@@ -1,22 +1,18 @@
 {{- template "layout" .}}
 {{- define "title"}}
-Invitación a {{.Title}}
+{{string "inviteViewTitle"}} {{.Title}}
 {{- end}}
 {{- define "content"}}
     <main class="form">
-        <h1>Invitación a {{.Title}}</h1>
-        <button
-            onclick="navigator.share({ title: 'Invitación a {{.Title}}', url: location.href })">
-            Compartir invitación
-        </button>
-        <p>Te han invitado a <a href="/view/{{.ID}}">{{.Title}}</a> con: {{join .Persons ", "}}.</p>
+        <h1>{{string "inviteViewTitle"}} {{.Title}}</h1>
+        <p>{{string "inviteMessage"}} <a href="/view/{{.ID}}">{{.Title}}</a> {{string "invitePersonsJoiner"}}: {{join .Persons ", "}}.</p>
         <p>Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.</p>
 
         <form action="/add-person/{{.ID}}" method="post">
-            <label for="name">Nombre</label>
+            <label for="name">{{string "labelName"}}</label>
             <input type="text" name="name" required/>
 
-            <button>Unirse</button>
+            <button>{{string "labelJoin"}}</button>
         </form>
     </main>
 {{- end -}}
