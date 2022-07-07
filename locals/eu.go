@@ -11,7 +11,7 @@ var localStrings = map[string]string{
 
 	"inviteViewTitle": "Gonbidapena ",
 	"inviteMessage": "Gonbidatu zaituzte ",
-	"invitePersonsJoiner": "Pertsona hauekin: ",
+	"invitePersonsJoiner": "pertsona hauekin",
 	"inviteInstructions": "Parte hartu nahi baduzu, gehitu zure izena hemen eta sarrera automatikoki eguneratuko da.",
 
 	"labelTitle": "Izenburua",

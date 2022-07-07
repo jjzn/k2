@@ -6,7 +6,7 @@
     <main class="form">
         <h1>{{string "inviteViewTitle"}} {{.Title}}</h1>
         <p>{{string "inviteMessage"}} <a href="/view/{{.ID}}">{{.Title}}</a> {{string "invitePersonsJoiner"}}: {{join .Persons ", "}}.</p>
-        <p>Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.</p>
+        <p>{{string "inviteInstructions"}}</p>
 
         <form action="/add-person/{{.ID}}" method="post">
             <label for="name">{{string "labelName"}}</label>
