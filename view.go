@@ -41,11 +41,15 @@ func sortByDate(items []Item) func(int, int) bool {
 }
 
 func isInDateRange(i Item, t time.Time) bool {
-	var year_end, day_end, hour_end, min_end int
+	var year_end, day_end int
 	var month_end time.Month
-	
-	var year, day, hour, min int
+
+	var year, day int
 	var month time.Month
+
+	year = i.Date.Year()
+	month = i.Date.Month()
+	day = i.Date.Day()
 
 	if !i.EndDate.IsZero() {
 		year_end = i.EndDate.Year()
@@ -62,19 +66,12 @@ func isInDateRange(i Item, t time.Time) bool {
 		day = day_end
 	}
 
-	if !i.EndTime.IsZero() {
-		hour_end = i.EndTime.Hour()
-		min_end = i.EndTime.Minute()
-	} else {
-		// make the end time be at the end of the full day
-		hour_end = 24
-		min_end = 0
-	}
+	start := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+	end := time.Date(year_end, month_end, day_end, 0, 0, 0, 0, t.Location())
 
-	start := time.Date(year, month, day, hour, min, 0, 0, t.Location())
-	end := time.Date(year_end, month_end, day_end, hour_end, min_end, 0, 0, t.Location())
-
-	return t.After(start) && t.Before(end)
+	after := t.After(start) || t.Equal(start)
+	before := t.Before(end) || t.Equal(end)
+	return after && before
 }
 
 func handleIndex(w http.ResponseWriter, r *http.Request, _ rt.Params) {
@@ -244,10 +241,10 @@ func handleFilterDate(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 		return
 	}
 
+	now := time.Date(year, date.Month(), day, 0, 0, 0, 0, time.Now().Location())
+
 	items := data.Filter(func(i Item) bool {
-		return i.Date.Year() == year &&
-			i.Date.Month() == date.Month() &&
-			i.Date.Day() == day
+		return isInDateRange(i, now)
 	})
 
 	sort.Slice(items, sortByDate(items))
