@@ -15,18 +15,18 @@
         <header>
             <h1><a href="/">ϰ²</a></h1>
             <div aria-hidden style="flex:1"></div>
-            <a href="/new"><button>Nuevo</button></a>
+            <a href="/new"><button>{{string "labelNew"}}</button></a>
         </header>
 
         <nav>
-            <a href="/today">Hoy</a>
-            <a href="/tomorrow">Mañana</a>
+            <a href="/today">{{string "dateToday"}}</a>
+            <a href="/tomorrow">{{string "dateTomorrow"}}</a>
 
-            <a href="/this-week">Esta semana</a>
-            <a href="/next-week">Semana siguiente</a>
+            <a href="/this-week">{{string "dateThisWeek"}}</a>
+            <a href="/next-week">{{string "dateNextWeek"}}</a>
 
-            <a href="/this-month">Este mes</a>
-            <a href="/next-month">Mes siguiente</a>
+            <a href="/this-month">{{string "dateThisMonth"}}</a>
+            <a href="/next-month">{{string "dateNextMonth"}}</a>
         </nav>
         {{block "content" .}}{{end}}
         <script src="/static/current-page.js"></script>

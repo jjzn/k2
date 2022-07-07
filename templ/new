@@ -1,19 +1,20 @@
 {{- template "layout" .}}
 {{- define "title"}}
     {{- if eq .Title "" -}}
-        Nueva
+        {{string "labelNew"}}
     {{- else -}}
-        Actualizar
-    {{- end}} entrada
+        {{string "labelUpdate"}}
+    {{- end}} {{string "wordItem"}}
 {{- end}}
 {{- define "content"}}
     <main class="form">
         <h1>
             {{- if eq .Title "" -}}
-                Nueva
+                {{string "labelNew"}}
             {{- else -}}
-                Actualizar
-            {{- end}} entrada</h1>
+                {{string "labelUpdate"}}
+            {{- end}} {{string "wordItem"}}
+        </h1>
 
         <form action="
             {{- if eq .Title "" -}}
@@ -21,37 +22,37 @@
             {{- else -}}
                 /update/{{.ID}}
             {{- end}}" method="post">
-            <label for="title">Título</label>
+            <label for="title">{{string "labelTitle"}}</label>
             <input type="text" name="title" value="{{.Title}}" required/>
 
-            <label for="persons">Personas (separados por comas)</label>
+            <label for="persons">{{string "labelPersons"}}</label>
             <input type="text" name="persons" value="{{join .Persons ", "}}" required/>
 
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
-                    <label for="date">Fecha</label>
+                    <label for="date">{{string "labelDate"}}</label>
                     <input type="date" name="date" {{if not .Date.IsZero}}value="{{.Date.Format "2006-01-02"}}"{{end}} required/>
                 </div>
 
                 <div>
-                    <label for="time">Hora (opcional)</label>
+                    <label for="time">{{string "labelTime"}}</label>
                     <input type="time" name="time" {{if not .Date.IsZero}}{{if not .IsAllDay}}value="{{.Date.Format "15:04"}}"{{end}}{{end}}/>
                 </div>
 
                 <div>
-                    <label for="end-date">Fecha final (opcional)</label>
+                    <label for="end-date">{{string "labelEndDate"}}</label>
                     <input type="date" name="end-date" {{if not .EndDate.IsZero}}value="{{.EndDate.Format "2006-01-02"}}"{{end}}/>
                 </div>
                 
                 <div>
-                    <label for="end-time">Hora final (opcional)</label>
+                    <label for="end-time">{{string "labelEndTime"}}</label>
                     <input type="time" name="end-time" {{if not .EndTime.IsZero}}value="{{.EndTime.Format "15:04"}}"{{end}}/>
                 </div>
             </div>
 
             <details class="add_field" {{if ne .Description ""}}open{{end}}>
-                <summary>Añadir descripción</summary>
-                <label for="desc">Descripción (opcional)</label>
+                <summary>{{string "labelAddDescription"}}</summary>
+                <label for="desc">{{string "labelDescription"}}</label>
                 <textarea
                     rows="5"
                     name="desc"
@@ -62,9 +63,9 @@
 
             <button>
                 {{- if eq .Title "" -}}
-                    Crear
+                    {{string "labelCreate"}}
                 {{- else -}}
-                    Actualizar
+                    {{string "labelUpdate"}}
                 {{- end -}}
             </button>
         </form>

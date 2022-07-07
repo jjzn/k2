@@ -12,7 +12,7 @@
             {{- end}}
         </section>
     {{- else}}
-        <h1>No hay entradas</h1>
+        <h1>{{string "messageNoItems"}}</h1>
     {{- end}}
     </main>
 {{- end -}}
