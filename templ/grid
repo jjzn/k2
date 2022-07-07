@@ -5,13 +5,13 @@
         <h1>{{.Month}}</h1>
 
         <section class="grid">
-            <div><b>Lun</b></div>
-            <div><b>Mar</b></div>
-            <div><b>Mié</b></div>
-            <div><b>Jue</b></div>
-            <div><b>Vie</b></div>
-            <div><b>Sáb</b></div>
-            <div><b>Dom</b></div>
+            <div><b>{{string "dayMon"}}</b></div>
+            <div><b>{{string "dayTue"}}</b></div>
+            <div><b>{{string "dayWed"}}</b></div>
+            <div><b>{{string "dayThu"}}</b></div>
+            <div><b>{{string "dayFri"}}</b></div>
+            <div><b>{{string "daySat"}}</b></div>
+            <div><b>{{string "daySun"}}</b></div>
 
         {{- range .Filler}}
             <div class="filler-day"></div>

@@ -34,6 +34,14 @@ var localStrings = map[string]string{
 	"dateThisMonth": "Este mes",
 	"dateNextMonth": "Mes siguiente",
 
+	"dayMon": "Lun",
+	"dayTue": "Mar",
+	"dayWed": "Mié",
+	"dayThu": "Jue",
+	"dayFri": "Vie",
+	"daySat": "Sáb",
+	"daySun": "Dom",
+
 	"messageNoItems": "No hay entradas",
 	"wordItem": "entrada",
 }
