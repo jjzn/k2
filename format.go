@@ -4,21 +4,21 @@ import "time"
 import "strings"
 import "fmt"
 
+var originalMonthNames = []string{
+	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December",
+}
+
+var originalDayNames = []string{
+	"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+}
+
 func formatMonth(m time.Month) string {
 	s := m.String()
 
-	s = strings.Replace(s, "January", "Enero", -1)
-	s = strings.Replace(s, "February", "Febrero", -1)
-	s = strings.Replace(s, "March", "Marzo", -1)
-	s = strings.Replace(s, "April", "Abril", -1)
-	s = strings.Replace(s, "May", "Mayo", -1)
-	s = strings.Replace(s, "June", "Junio", -1)
-	s = strings.Replace(s, "July", "Julio", -1)
-	s = strings.Replace(s, "August", "Agosto", -1)
-	s = strings.Replace(s, "September", "Septiembre", -1)
-	s = strings.Replace(s, "October", "Octubre", -1)
-	s = strings.Replace(s, "November", "Noviembre", -1)
-	s = strings.Replace(s, "December", "Diciembre", -1)
+	for i := range originalMonthNames {
+		s = strings.Replace(s, originalMonthNames[i], monthNames[i], -1)
+	}
 
 	return s
 }
@@ -26,13 +26,9 @@ func formatMonth(m time.Month) string {
 func formatTime(t time.Time, fmt string) string {
 	s := t.Format(fmt)
 
-	s = strings.Replace(s, "Monday", "Lunes", -1)
-	s = strings.Replace(s, "Tuesday", "Martes", -1)
-	s = strings.Replace(s, "Wednesday", "Miércoles", -1)
-	s = strings.Replace(s, "Thursday", "Jueves", -1)
-	s = strings.Replace(s, "Friday", "Viernes", -1)
-	s = strings.Replace(s, "Saturday", "Sábado", -1)
-	s = strings.Replace(s, "Sunday", "Domingo", -1)
+	for i := range originalDayNames {
+		s = strings.Replace(s, originalDayNames[i], dayNames[i], -1)
+	}
 
 	return s
 }
@@ -61,22 +57,22 @@ func formatDates(
 	}
 
 	if diff > 0 {
-		s += fmt.Sprintf(" (quedan %d días)", diff)
+		s += fmt.Sprintf(localFormats["daysLeft"], diff)
 	} else if diff < 0 {
-		s += fmt.Sprintf(" (hace %d días)", -diff)
+		s += fmt.Sprintf(localFormats["daysPast"], -diff)
 	} else {
-		s += " (hoy)"
+		s += localFormats["today"]
 	}
 
 	if !end_date.IsZero() && !end_time.IsZero() {
-		s += " — hasta el día "
+		s += localFormats["untilDate"]
 		s += end_date.Format("2/1/2006")
-		s += " a las "
+		s += localFormats["at"]
 		s += end_time.Format("15:04")
 	} else if !end_date.IsZero() {
-		s += " — hasta el día " + end_date.Format("2/1/2006")
+		s += localFormats["untilDate"] + end_date.Format("2/1/2006")
 	} else if !end_time.IsZero() {
-		s += " — hasta las " + end_time.Format("15:04")
+		s += localFormats["untilTime"] + end_time.Format("15:04")
 	}
 
 	return s
