@@ -14,7 +14,7 @@ var localStrings = map[string]string{
 	"inviteInstructions": "Si quieres participar, añade aquí tu nombre y la entrada se actualizará automáticamente.",
 
 	"labelTitle": "Título",
-	"labelPersons": "Personas (separadas por comas)",
+	"labelPersons": "Participantes (separados por comas)",
 	"labelDate": "Fecha",
 	"labelTime": "Hora (opcional)",
 	"labelEndDate": "Fecha final (opcional)",
@@ -33,6 +33,14 @@ var localStrings = map[string]string{
 	"dateNextWeek": "Semana siguiente",
 	"dateThisMonth": "Este mes",
 	"dateNextMonth": "Mes siguiente",
+
+	"dayMon": "Lun",
+	"dayTue": "Mar",
+	"dayWed": "Mié",
+	"dayThu": "Jue",
+	"dayFri": "Vie",
+	"daySat": "Sáb",
+	"daySun": "Dom",
 
 	"messageNoItems": "No hay entradas",
 	"wordItem": "entrada",
