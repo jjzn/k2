@@ -1,5 +1,5 @@
 {{- template "layout" .}}
-{{- define "title"}}Lista de entradas{{end}}
+{{- define "title"}}{{string "listViewTitle"}}{{end}}
 {{- define "content"}}
     <main class="list">
     {{- range .}}

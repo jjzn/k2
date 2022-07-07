@@ -7,6 +7,7 @@ var localStrings = map[string]string{
 	"invite": "Convidar persones",
 
 	"gridViewTitle": "Vista d'entrades",
+	"listViewTitle": "Llista d'entrades",
 
 	"inviteViewTitle": "Invitació a",
 	"inviteMessage": "T'han convidat a",

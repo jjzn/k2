@@ -7,6 +7,7 @@ var localStrings = map[string]string{
 	"invite": "Pertsonak gonbidatu",
 
 	"gridViewTitle": "Sarrera bista",
+	"listViewTitle": "Sarrera zerrenda",
 
 	"inviteViewTitle": "Gonbidapena ",
 	"inviteMessage": "Gonbidatu zaituzte ",
