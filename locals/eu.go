@@ -34,6 +34,14 @@ var localStrings = map[string]string{
 	"dateThisMonth": "Hilabete honetan",
 	"dateNextMonth": "Hurrengo hilabetean",
 
+	"dayMon": "Lun",
+	"dayTue": "Mar",
+	"dayWed": "Mié",
+	"dayThu": "Jue",
+	"dayFri": "Vie",
+	"daySat": "Sáb",
+	"daySun": "Dom",
+
 	"messageNoItems": "Ez daude sarrerarik",
 	"wordItem": "sarrera",
 }
