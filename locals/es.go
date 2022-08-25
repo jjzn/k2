@@ -1,6 +1,8 @@
 package main
 
 var localStrings = map[string]string{
+	"localeName": "es",
+
 	"removeItemConfirm": "Seguro que quieres eliminar permanentemente esta entrada?",
 	"removeItem": "Eliminar entrada",
 	"editItem": "Editar entrada",
