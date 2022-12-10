@@ -57,13 +57,8 @@ func isInDateRange(i Item, t time.Time) bool {
 		day_end = i.EndDate.Day()
 	} else {
 		year_end = i.Date.Year()
-		year = year_end
-
 		month_end = i.Date.Month()
-		month = month_end
-
 		day_end = i.Date.Day()
-		day = day_end
 	}
 
 	start := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
