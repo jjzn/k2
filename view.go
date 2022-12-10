@@ -41,6 +41,40 @@ func sortByDate(items []Item) func(int, int) bool {
 	}
 }
 
+func isInDateRange(i Item, t time.Time) bool {
+	var year_end, day_end int
+	var month_end time.Month
+
+	var year, day int
+	var month time.Month
+
+	year = i.Date.Year()
+	month = i.Date.Month()
+	day = i.Date.Day()
+
+	if !i.EndDate.IsZero() {
+		year_end = i.EndDate.Year()
+		month_end = i.EndDate.Month()
+		day_end = i.EndDate.Day()
+	} else {
+		year_end = i.Date.Year()
+		year = year_end
+
+		month_end = i.Date.Month()
+		month = month_end
+
+		day_end = i.Date.Day()
+		day = day_end
+	}
+
+	start := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+	end := time.Date(year_end, month_end, day_end, 0, 0, 0, 0, t.Location())
+
+	after := t.After(start) || t.Equal(start)
+	before := t.Before(end) || t.Equal(end)
+	return after && before
+}
+
 func handleIndex(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	now := time.Now()
 	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
@@ -58,8 +92,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 
 func handleDate(now time.Time, w http.ResponseWriter) {
 	items := data.Filter(func(i Item) bool {
-		return i.Date.Year() == now.Year() &&
-			i.Date.YearDay() == now.YearDay()
+		return isInDateRange(i, now)
 	})
 
 	sort.Slice(items, sortByDate(items))
@@ -102,7 +135,7 @@ func handleNextWeek(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 }
 
 func handleMonth(year int, month time.Month, w http.ResponseWriter) {
-	now := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
+	now := time.Date(year, month, 1, 0, 0, 0, 0, time.Now().Location())
 	n_days := now.AddDate(0, 1, -1).Day()
 
 	days := make([][]Item, n_days)
@@ -209,10 +242,10 @@ func handleFilterDate(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 		return
 	}
 
+	now := time.Date(year, date.Month(), day, 0, 0, 0, 0, time.Now().Location())
+
 	items := data.Filter(func(i Item) bool {
-		return i.Date.Year() == year &&
-			i.Date.Month() == date.Month() &&
-			i.Date.Day() == day
+		return isInDateRange(i, now)
 	})
 
 	sort.Slice(items, sortByDate(items))
