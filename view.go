@@ -79,7 +79,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 
 	items := data.Filter(func(i Item) bool {
-		return today.Before(i.Date)
+		return isInDateRange(i, today) || today.Before(i.Date)
 	})
 
 	sort.Slice(items, sortByDate(items))
