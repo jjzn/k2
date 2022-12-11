@@ -41,46 +41,12 @@ func sortByDate(items []Item) func(int, int) bool {
 	}
 }
 
-func isInDateRange(i Item, t time.Time) bool {
-	var year_end, day_end int
-	var month_end time.Month
-
-	var year, day int
-	var month time.Month
-
-	year = i.Date.Year()
-	month = i.Date.Month()
-	day = i.Date.Day()
-
-	if !i.EndDate.IsZero() {
-		year_end = i.EndDate.Year()
-		month_end = i.EndDate.Month()
-		day_end = i.EndDate.Day()
-	} else {
-		year_end = i.Date.Year()
-		year = year_end
-
-		month_end = i.Date.Month()
-		month = month_end
-
-		day_end = i.Date.Day()
-		day = day_end
-	}
-
-	start := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
-	end := time.Date(year_end, month_end, day_end, 0, 0, 0, 0, t.Location())
-
-	after := t.After(start) || t.Equal(start)
-	before := t.Before(end) || t.Equal(end)
-	return after && before
-}
-
 func handleIndex(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	now := time.Now()
 	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 
 	items := data.Filter(func(i Item) bool {
-		return today.Before(i.Date)
+		return isInDateRange(i, today) || today.Before(i.Date)
 	})
 
 	sort.Slice(items, sortByDate(items))
@@ -111,9 +77,18 @@ func handleTomorrow(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 }
 
 func handleWeek(year, week int, w http.ResponseWriter) {
+	start := firstDayOfWeek(year, week)
+
 	items := data.Filter(func(i Item) bool {
-		y, wk := i.Date.ISOWeek()
-		return y == year && wk == week && time.Now().Before(i.Date)
+		for k := 0; k < 7; k++ {
+			day := start.AddDate(0, 0, k)
+
+			if isInDateRange(i, day) {
+				return true
+			}
+		}
+
+		return false
 	})
 
 	sort.Slice(items, sortByDate(items))
@@ -140,8 +115,13 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 
 	days := make([][]Item, n_days)
 	items := data.Filter(func(i Item) bool {
-		return i.Date.Year() == year &&
-			i.Date.Month() == month
+		for k = 0; i < n_days; k++ {
+			if isInDateRange(i, now.AddDate(0, 0, k)) {
+				return true
+			}
+		}
+
+		return false
 	})
 
 	sort.Slice(items, sortByDate(items))
