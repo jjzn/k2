@@ -76,9 +76,18 @@ func handleTomorrow(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 }
 
 func handleWeek(year, week int, w http.ResponseWriter) {
+	start := firstDayOfWeek(year, week)
+
 	items := data.Filter(func(i Item) bool {
-		y, wk := i.Date.ISOWeek()
-		return y == year && wk == week && time.Now().Before(i.Date)
+		for k := 0; k < 7; k++ {
+			day := start.AddDate(0, 0, k)
+
+			if isInDateRange(i, day) {
+				return true
+			}
+		}
+
+		return false
 	})
 
 	sort.Slice(items, sortByDate(items))
