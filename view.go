@@ -115,7 +115,11 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 
 	days := make([][]Item, n_days)
 	items := data.Filter(func(i Item) bool {
+<<<<<<< HEAD
 		for k = 0; i < n_days; k++ {
+=======
+		for k := 0; k < n_days; k++ {
+>>>>>>> 33bf4dc4fec3481838dd5622936148ea186020ce
 			if isInDateRange(i, now.AddDate(0, 0, k)) {
 				return true
 			}
