@@ -114,8 +114,13 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 
 	days := make([][]Item, n_days)
 	items := data.Filter(func(i Item) bool {
-		return i.Date.Year() == year &&
-			i.Date.Month() == month
+		for k = 0; i < n_days; k++ {
+			if isInDateRange(i, now.AddDate(0, 0, k)) {
+				return true
+			}
+		}
+
+		return false
 	})
 
 	sort.Slice(items, sortByDate(items))
