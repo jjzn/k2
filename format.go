@@ -37,11 +37,10 @@ func formatDates(
 	t time.Time,
 	all_day bool,
 	end_date time.Time, end_time time.Time) string {
-	var s string
-	if all_day {
-		s = formatTime(t, "Monday, 2/1/2006")
-	} else {
-		s = formatTime(t, "Monday, 2/1/2006 15:04")
+	s := formatTime(t, "Monday, 2/1/2006")
+	if !all_day {
+		s += localFormats["at"]
+		s += formatTime(t, "15:04")
 	}
 
 	y, m, d := time.Now().Date()
