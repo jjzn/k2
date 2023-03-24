@@ -31,6 +31,16 @@ body {
 header, main { padding: 1em; }
 nav { padding: 0 1em; }
 
+.grid-title {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.grid-title > a {
+    text-decoration: none;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));

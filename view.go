@@ -131,10 +131,14 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 	}
 
 	d := struct {
-		Month  string
+		Prev time.Time
+		Next time.Time
+		MonthName  string
 		Filler []int
 		Days   [][]Item
 	}{
+		now.AddDate(0, -1, 0),
+		now.AddDate(0, 1, 0),
 		formatMonth(month),
 		make([]int, (now.Weekday()+6)%7),
 		days,
