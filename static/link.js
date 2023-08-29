@@ -6,7 +6,7 @@ const link = function(match) {
     const href = /^\w+:/.test(match)
         ? match : 'http://' + match;
 
-    return `<a href="${href}">${match}</a>`;
+    return `<a href="${href}" target="_blank" rel="noreferrer">${match}</a>`;
 };
 
 elem.innerHTML = elem.innerHTML.replace(url, link);
