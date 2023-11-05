@@ -78,13 +78,6 @@ nav, .vert { flex-wrap: wrap; }
 
 .child-flex > * { flex: 1; }
 
-/* TODO: remove */
-@supports not (gap: 1rem) {
-    :is(header, nav, .vert) * + * {
-        margin-left: 1rem;
-    }
-}
-
 header > h1 > a { all: unset; }
 header > h1 > a:visited { color: currentcolor; }
 
@@ -130,6 +123,12 @@ textarea { resize: none; }
 :is(button, input, textarea):focus {
     border-color: gray;
     outline: none;
+}
+
+#location-suggestions {
+    margin-top: -.5em;
+    margin-bottom: 1em;
+    line-height: 1.5;
 }
 
 details.add_field summary {
