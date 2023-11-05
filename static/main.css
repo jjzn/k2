@@ -90,6 +90,11 @@ form, .item {
 
 main > .item { padding: 1em; }
 main > .item a { text-decoration: none; }
+main > .item > p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 form { margin-top: .5em; }
 form * { width: 100%; }
