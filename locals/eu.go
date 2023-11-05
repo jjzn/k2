@@ -16,6 +16,7 @@ var localStrings = map[string]string{
 
 	"labelTitle": "Izenburua",
 	"labelPersons": "Parte-hartzaileak (komekin separatuta)",
+	"labelLocation": "Leku (hautazkoa)",
 	"labelDate": "Data",
 	"labelTime": "Ordua (hautazkoa)",
 	"labelEndDate": "Amaiera-data (hautazkoa)",

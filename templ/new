@@ -28,6 +28,9 @@
             <label for="persons">{{string "labelPersons"}}</label>
             <input type="text" name="persons" value="{{join .Persons ", "}}" required/>
 
+            <label for="location">{{string "labelLocation"}}</label>
+            <input type="text" name="location" value="{{.Location}}"/>
+
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
                     <label for="date">{{string "labelDate"}}</label>
