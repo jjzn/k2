@@ -24,6 +24,7 @@ type Item struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
 	Persons     []string  `json:"pers"`
+	Location    string    `json:"loc"`
 	Description string    `json:"desc"`
 	Date        time.Time `json:"date"`
 	EndDate     time.Time `json:"end_date"`
@@ -51,6 +52,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	}
 
 	title := strings.TrimSpace(r.PostForm.Get("title"))
+	location := strings.TrimSpace(r.PostForm.Get("location"))
 	persons := strings.Split(
 		strings.TrimSpace(r.PostForm.Get("persons")),
 		", ")
@@ -89,7 +91,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		end_time = time.Time{}
 	}
 
-	return Item{id, title, persons, desc, date, end_date, end_time, all_day}
+	return Item{id, title, persons, location, desc, date, end_date, end_time, all_day}
 }
 
 func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {

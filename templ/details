@@ -12,7 +12,7 @@
 
             <a href="/invite/{{.ID}}"><button>{{string "invite"}}</button></a>
         </div>
-        <p>{{formatDates .Date .IsAllDay .EndDate .EndTime}} — {{join .Persons ", "}}</p>
+        <p>{{formatDates .Date .IsAllDay .EndDate .EndTime}} — {{join .Persons ", "}} {{- if ne .Location ""}}— 📍 {{.Location}}{{end}}</p>
 
         <p id="desc" style="white-space: pre-wrap">{{.Description}}</p>
     </main>
