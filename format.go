@@ -57,22 +57,22 @@ func formatDates(
 	}
 
 	if diff > 0 {
-		s += fmt.Sprintf(localFormats["daysLeft"], diff)
+		s += fmt.Sprintf(localeFormats["daysLeft"], diff)
 	} else if diff < 0 {
-		s += fmt.Sprintf(localFormats["daysPast"], -diff)
+		s += fmt.Sprintf(localeFormats["daysPast"], -diff)
 	} else {
-		s += localFormats["today"]
+		s += localeFormats["today"]
 	}
 
 	if !end_date.IsZero() && !end_time.IsZero() {
-		s += localFormats["untilDate"]
+		s += localeFormats["untilDate"]
 		s += end_date.Format("2/1/2006")
-		s += localFormats["at"]
+		s += localeFormats["at"]
 		s += end_time.Format("15:04")
 	} else if !end_date.IsZero() {
-		s += localFormats["untilDate"] + end_date.Format("2/1/2006")
+		s += localeFormats["untilDate"] + end_date.Format("2/1/2006")
 	} else if !end_time.IsZero() {
-		s += localFormats["untilTime"] + end_time.Format("15:04")
+		s += localeFormats["untilTime"] + end_time.Format("15:04")
 	}
 
 	return s

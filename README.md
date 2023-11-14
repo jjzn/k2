@@ -23,11 +23,11 @@ creating `data.json` containing `{}`.
 
 ## Locale options
 
-A list of preconfigured locale files can be found in `locals/`. To select one
-for your local k2 install, you can copy or symlink the chosen file to `local.go`.
+A list of preconfigured locale files can be found in `locales/`. To select one
+for your local k2 install, you can copy or symlink the chosen file to `locale.go`.
 
 For example, for symlinking (the recommended option), simply run:
 
-    ln -sf locals/YOUR_LOCALE.go local.go
+    ln -sf locales/YOUR_LOCALE.go locale.go
 
 After any changes to the locale configuration, k2 must be recompiled and restarted.

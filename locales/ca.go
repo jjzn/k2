@@ -1,6 +1,6 @@
 package main
 
-var localStrings = map[string]string{
+var localeStrings = map[string]string{
 	"removeItemConfirm": "Segur que vols eliminar permanentement aquesta entrada?",
 	"removeItem": "Eliminar entrada",
 	"editItem": "Editar entrada",
@@ -55,7 +55,7 @@ var dayNames = []string{
 	"Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge",
 }
 
-var localFormats = map[string]string{
+var localeFormats = map[string]string{
 	"daysLeft": " (queden %d dies)",
 	"daysPast": " (fa %d dies)",
 	"today": " (avui)",
@@ -64,6 +64,6 @@ var localFormats = map[string]string{
 	"at": " a les ",
 }
 
-func getLocalString(key string) string {
-	return localStrings[key]
+func getLocaleString(key string) string {
+	return localeStrings[key]
 }

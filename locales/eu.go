@@ -1,6 +1,6 @@
 package main
 
-var localStrings = map[string]string{
+var localeStrings = map[string]string{
 	"removeItemConfirm": "Ziur zaude betirako ezabatu nahi duzula sarrera?",
 	"removeItem": "Sarrera ezabatu",
 	"editItem": "Sarrera editatu",
@@ -56,7 +56,7 @@ var dayNames = []string{
 	"Astelehena", "Asteartea", "Asteazkena", "Osteguna", "Ostirala", "Larunbata", "Igandea",
 }
 
-var localFormats = map[string]string{
+var localeFormats = map[string]string{
 	"daysLeft": " (%d egun geratzen dira)",
 	"daysPast": " (duela %d egun)",
 	"today": " (gaur)",
@@ -65,6 +65,6 @@ var localFormats = map[string]string{
 	"at": " orduan ",
 }
 
-func getLocalString(key string) string {
-	return localStrings[key]
+func getLocaleString(key string) string {
+	return localeStrings[key]
 }

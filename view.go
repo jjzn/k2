@@ -19,7 +19,7 @@ var fns = template.FuncMap{
 	"formatTime": formatTime,
 	"join": strings.Join,
 	"formatDates": formatDates,
-	"string": getLocalString,
+	"string": getLocaleString,
 }
 
 var list = template.Must(
