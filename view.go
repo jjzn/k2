@@ -16,10 +16,10 @@ var fns = template.FuncMap{
 	"add": func(a, b int) int {
 		return a + b
 	},
-	"formatTime": formatTime,
-	"join": strings.Join,
+	"formatTime":  formatTime,
+	"join":        strings.Join,
 	"formatDates": formatDates,
-	"string": getLocaleString,
+	"string":      getLocaleString,
 }
 
 var list = template.Must(
@@ -131,11 +131,11 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 	}
 
 	d := struct {
-		Prev time.Time
-		Next time.Time
-		MonthName  string
-		Filler []int
-		Days   [][]Item
+		Prev      time.Time
+		Next      time.Time
+		MonthName string
+		Filler    []int
+		Days      [][]Item
 	}{
 		now.AddDate(0, -1, 0),
 		now.AddDate(0, 1, 0),

@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"flag"
-	"strings"
 	"sort"
+	"strings"
 	"time"
 
 	"fmt"

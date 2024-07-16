@@ -2,36 +2,36 @@ package main
 
 var localeStrings = map[string]string{
 	"removeItemConfirm": "Ziur zaude betirako ezabatu nahi duzula sarrera?",
-	"removeItem": "Sarrera ezabatu",
-	"editItem": "Sarrera editatu",
-	"invite": "Pertsonak gonbidatu",
+	"removeItem":        "Sarrera ezabatu",
+	"editItem":          "Sarrera editatu",
+	"invite":            "Pertsonak gonbidatu",
 
 	"gridViewTitle": "Sarrera bista",
 	"listViewTitle": "Sarrera zerrenda",
 
-	"inviteViewTitle": "Gonbidapena ",
-	"inviteMessage": "Gonbidatu zaituzte ",
+	"inviteViewTitle":     "Gonbidapena ",
+	"inviteMessage":       "Gonbidatu zaituzte ",
 	"invitePersonsJoiner": "pertsona hauekin",
-	"inviteInstructions": "Parte hartu nahi baduzu, gehitu zure izena hemen eta sarrera automatikoki eguneratuko da.",
+	"inviteInstructions":  "Parte hartu nahi baduzu, gehitu zure izena hemen eta sarrera automatikoki eguneratuko da.",
 
-	"labelTitle": "Izenburua",
-	"labelPersons": "Parte-hartzaileak (komekin separatuta)",
-	"labelDate": "Data",
-	"labelTime": "Ordua (hautazkoa)",
-	"labelEndDate": "Amaiera-data (hautazkoa)",
-	"labelEndTime": "Amaiera-ordua (hautazkoa)",
+	"labelTitle":          "Izenburua",
+	"labelPersons":        "Parte-hartzaileak (komekin separatuta)",
+	"labelDate":           "Data",
+	"labelTime":           "Ordua (hautazkoa)",
+	"labelEndDate":        "Amaiera-data (hautazkoa)",
+	"labelEndTime":        "Amaiera-ordua (hautazkoa)",
 	"labelAddDescription": "Deskribapena gehitu",
-	"labelDescription": "Deskribapena (hautazkoa)",
-	"labelName": "Izena",
-	"labelCreate": "Sortu",
-	"labelJoin": "Gehitu",
-	"labelNew": "Berria",
-	"labelUpdate": "Eguneratu",
+	"labelDescription":    "Deskribapena (hautazkoa)",
+	"labelName":           "Izena",
+	"labelCreate":         "Sortu",
+	"labelJoin":           "Gehitu",
+	"labelNew":            "Berria",
+	"labelUpdate":         "Eguneratu",
 
-	"dateToday": "Gaur",
-	"dateTomorrow": "Bihar",
-	"dateThisWeek": "Aste honetan",
-	"dateNextWeek": "Hurrengo astean",
+	"dateToday":     "Gaur",
+	"dateTomorrow":  "Bihar",
+	"dateThisWeek":  "Aste honetan",
+	"dateNextWeek":  "Hurrengo astean",
 	"dateThisMonth": "Hilabete honetan",
 	"dateNextMonth": "Hurrengo hilabetean",
 
@@ -44,7 +44,7 @@ var localeStrings = map[string]string{
 	"daySun": "Iga",
 
 	"messageNoItems": "Ez daude sarrerarik",
-	"wordItem": "sarrera",
+	"wordItem":       "sarrera",
 }
 
 var monthNames = []string{
@@ -57,12 +57,12 @@ var dayNames = []string{
 }
 
 var localeFormats = map[string]string{
-	"daysLeft": " (%d egun geratzen dira)",
-	"daysPast": " (duela %d egun)",
-	"today": " (gaur)",
+	"daysLeft":  " (%d egun geratzen dira)",
+	"daysPast":  " (duela %d egun)",
+	"today":     " (gaur)",
 	"untilDate": " — egunerarte ",
 	"untilTime": " — ordurarte ",
-	"at": " orduan ",
+	"at":        " orduan ",
 }
 
 func getLocaleString(key string) string {

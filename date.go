@@ -38,10 +38,10 @@ func firstDayOfWeek(year, week int) time.Time {
 	d := time.Date(year, 6, 1, 0, 0, 0, 0, time.Now().Location())
 	_, wk := d.ISOWeek()
 
-	d = d.AddDate(0, 0, 7 * (week - wk))
+	d = d.AddDate(0, 0, 7*(week-wk))
 
 	day := (int(d.Weekday()) + 6) % 7 // normalise so monday = 0 (week starts on monday)
-	d = d.AddDate(0, 0, 1 - day) // shift date back so it is a monday
+	d = d.AddDate(0, 0, 1-day)        // shift date back so it is a monday
 
 	return d
 }

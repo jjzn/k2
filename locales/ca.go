@@ -2,36 +2,36 @@ package main
 
 var localeStrings = map[string]string{
 	"removeItemConfirm": "Segur que vols eliminar permanentement aquesta entrada?",
-	"removeItem": "Eliminar entrada",
-	"editItem": "Editar entrada",
-	"invite": "Convidar persones",
+	"removeItem":        "Eliminar entrada",
+	"editItem":          "Editar entrada",
+	"invite":            "Convidar persones",
 
 	"gridViewTitle": "Vista d'entrades",
 	"listViewTitle": "Llista d'entrades",
 
-	"inviteViewTitle": "Invitació a",
-	"inviteMessage": "T'han convidat a",
+	"inviteViewTitle":     "Invitació a",
+	"inviteMessage":       "T'han convidat a",
 	"invitePersonsJoiner": "amb",
-	"inviteInstructions": "Si hi vols participar, afegeix aquí el teu nom i l'entrada s'actualitzarà automàticament.",
+	"inviteInstructions":  "Si hi vols participar, afegeix aquí el teu nom i l'entrada s'actualitzarà automàticament.",
 
-	"labelTitle": "Títol",
-	"labelPersons": "Participants (separats per comes)",
-	"labelDate": "Data",
-	"labelTime": "Hora (opcional)",
-	"labelEndDate": "Data final (opcional)",
-	"labelEndTime": "Hora final (opcional)",
+	"labelTitle":          "Títol",
+	"labelPersons":        "Participants (separats per comes)",
+	"labelDate":           "Data",
+	"labelTime":           "Hora (opcional)",
+	"labelEndDate":        "Data final (opcional)",
+	"labelEndTime":        "Hora final (opcional)",
 	"labelAddDescription": "Afegir descripció",
-	"labelDescription": "Descripció (opcional)",
-	"labelName": "Nom",
-	"labelCreate": "Crear",
-	"labelJoin": "Unir-se",
-	"labelNew": "Nova",
-	"labelUpdate": "Actualitzar",
+	"labelDescription":    "Descripció (opcional)",
+	"labelName":           "Nom",
+	"labelCreate":         "Crear",
+	"labelJoin":           "Unir-se",
+	"labelNew":            "Nova",
+	"labelUpdate":         "Actualitzar",
 
-	"dateToday": "Avui",
-	"dateTomorrow": "Demà",
-	"dateThisWeek": "Aquesta setmana",
-	"dateNextWeek": "Setmana següent",
+	"dateToday":     "Avui",
+	"dateTomorrow":  "Demà",
+	"dateThisWeek":  "Aquesta setmana",
+	"dateNextWeek":  "Setmana següent",
 	"dateThisMonth": "Aquest mes",
 	"dateNextMonth": "Mes següent",
 
@@ -44,7 +44,7 @@ var localeStrings = map[string]string{
 	"daySun": "Dg",
 
 	"messageNoItems": "No hi ha entrades",
-	"wordItem": "entrada",
+	"wordItem":       "entrada",
 }
 
 var monthNames = []string{
@@ -57,12 +57,12 @@ var dayNames = []string{
 }
 
 var localeFormats = map[string]string{
-	"daysLeft": " (queden %d dies)",
-	"daysPast": " (fa %d dies)",
-	"today": " (avui)",
+	"daysLeft":  " (queden %d dies)",
+	"daysPast":  " (fa %d dies)",
+	"today":     " (avui)",
 	"untilDate": " — fins el dia ",
 	"untilTime": " — fins les ",
-	"at": " a les ",
+	"at":        " a les ",
 }
 
 func getLocaleString(key string) string {
