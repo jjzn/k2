@@ -51,9 +51,11 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	}
 
 	title := strings.TrimSpace(r.PostForm.Get("title"))
-	persons := strings.Split(
-		strings.TrimSpace(r.PostForm.Get("persons")),
-		", ")
+	persons := strings.Split(r.PostForm.Get("persons"), ",")
+
+	for i, elem := range persons {
+		persons[i] = strings.TrimSpace(elem)
+	}
 
 	sort.Strings(persons)
 
