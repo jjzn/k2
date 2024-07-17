@@ -31,13 +31,13 @@ body {
 header, main { padding: 1em; }
 nav { padding: 0 1em; }
 
-.grid-title {
+.header-title {
     display: flex;
     justify-content: center;
     gap: 2rem;
 }
 
-.grid-title > a {
+.header-title > a {
     text-decoration: none;
 }
 

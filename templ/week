@@ -1,0 +1,20 @@
+{{- template "layout" .}}
+{{- define "title"}}{{string "listViewTitle"}}{{end}}
+{{- define "content"}}
+	<h1 class="header-title"><a href="/week/{{.Prev.Year}}/{{.Prev.Week}}">&larr;</a> {{.Current.Year}} {{.Current.Week}} <a href="/week/{{.Next.Year}}/{{.Next.Week}}">&rarr;</a></h1>
+
+    <main class="list">
+    {{- range .Items}}
+        <section class="item">
+            <h2><a href="/view/{{.ID}}">{{.Title}}</a></h2>
+            {{- if .IsAllDay}}
+            <p>{{formatTime .Date "Monday, 2/1/2006"}} — {{join .Persons ", "}}</p>
+            {{- else}}
+            <p>{{formatTime .Date "Monday, 2/1/2006 15:04"}} — {{join .Persons ", "}}</p>
+            {{- end}}
+        </section>
+    {{- else}}
+        <h1>{{string "messageNoItems"}}</h1>
+    {{- end}}
+    </main>
+{{- end -}}

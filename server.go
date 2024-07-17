@@ -204,8 +204,10 @@ func main() {
 	r.GET("/view/:id", handleView)
 	r.GET("/invite/:id", handleInvite)
 	r.GET("/edit/:id", handleEdit)
+
 	r.GET("/date/:year/:month/:day", handleFilterDate)
 	r.GET("/date/:year/:month", handleFilterMonth)
+	r.GET("/week/:year/:week", handleFilterWeek)
 
 	r.GET("/today", handleToday)
 	r.GET("/tomorrow", handleTomorrow)

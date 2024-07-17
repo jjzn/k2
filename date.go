@@ -2,6 +2,11 @@ package main
 
 import "time"
 
+type YearWeek struct {
+	Year int
+	Week int
+}
+
 func isInDateRange(i Item, t time.Time) bool {
 	var year_end, day_end int
 	var month_end time.Month
@@ -29,6 +34,18 @@ func isInDateRange(i Item, t time.Time) bool {
 	after := t.After(start) || t.Equal(start)
 	before := t.Before(end) || t.Equal(end)
 	return after && before
+}
+
+func weekBefore(week YearWeek) YearWeek {
+	d := firstDayOfWeek(week.Year, week.Week)
+	y, w := d.AddDate(0, 0, -7).ISOWeek()
+	return YearWeek{y, w}
+}
+
+func weekAfter(week YearWeek) YearWeek {
+	d := firstDayOfWeek(week.Year, week.Week)
+	y, w := d.AddDate(0, 0, 7).ISOWeek()
+	return YearWeek{y, w}
 }
 
 func firstDayOfWeek(year, week int) time.Time {

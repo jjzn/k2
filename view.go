@@ -30,6 +30,8 @@ var details = template.Must(
 	template.New("details").Funcs(fns).ParseFiles("templ/layout", "templ/details"))
 var invite = template.Must(
 	template.New("invite").Funcs(fns).ParseFiles("templ/layout", "templ/invite"))
+var weekView = template.Must(
+	template.New("week").Funcs(fns).ParseFiles("templ/layout", "templ/week"))
 
 func sortByDate(items []Item) func(int, int) bool {
 	return func(i, j int) bool {
@@ -93,9 +95,41 @@ func handleWeek(year, week int, w http.ResponseWriter) {
 
 	sort.Slice(items, sortByDate(items))
 
-	if err := list.Execute(w, items); err != nil {
+	yw := YearWeek{year, week}
+
+	d := struct {
+		Current YearWeek
+		Prev    YearWeek
+		Next    YearWeek
+		Items   []Item
+	}{
+		yw,
+		weekBefore(yw),
+		weekAfter(yw),
+		items,
+	}
+
+	if err := weekView.Execute(w, d); err != nil {
 		panic(err)
 	}
+}
+
+func handleFilterWeek(w http.ResponseWriter, r *http.Request, ps rt.Params) {
+	year, err := strconv.Atoi(ps.ByName("year"))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "cannot parse year\n")
+		return
+	}
+
+	week, err := strconv.Atoi(ps.ByName("week"))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "cannot parse week\n")
+		return
+	}
+
+	handleWeek(year, week, w)
 }
 
 func handleThisWeek(w http.ResponseWriter, r *http.Request, _ rt.Params) {
