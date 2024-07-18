@@ -28,6 +28,10 @@
             <label for="persons">{{string "labelPersons"}}</label>
             <input type="text" name="persons" value="{{join .Persons ", "}}" required/>
 
+            <label for="location">{{string "labelLocation"}}</label>
+            <input type="text" name="location" value="{{.Location}}"/>
+            <ul id="location-suggestions" hidden></ul>
+
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
                     <label for="date">{{string "labelDate"}}</label>
@@ -70,4 +74,6 @@
             </button>
         </form>
     </main>
+
+    <script src="/static/suggest-location.js"></script>
 {{- end -}}
