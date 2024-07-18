@@ -4,7 +4,8 @@ const location_field = form['location'];
 const MAX_SUGGESTIONS = 3;
 
 // TODO: provide attribution
-location_field.addEventListener('blur', async () => {
+// TODO: determine wether to listen to input or blur events
+location_field.addEventListener('input', async () => {
     const query = encodeURIComponent(location_field.value);
     const resp = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&limit=${MAX_SUGGESTIONS}&format=jsonv2`); // TODO: set the user agent
     const data = await resp.json();
