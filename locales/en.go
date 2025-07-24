@@ -16,6 +16,7 @@ var localeStrings = map[string]string{
 
 	"labelTitle":          "Title",
 	"labelPersons":        "Persons (comma separated)",
+	"labelLocation":       "Location",
 	"labelDate":           "Date",
 	"labelTime":           "Time (optional)",
 	"labelEndDate":        "End date (optional)",
