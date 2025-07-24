@@ -17,6 +17,7 @@ import (
 	"syscall"
 
 	"github.com/google/uuid"
+	"github.com/arran4/golang-ical"
 	rt "github.com/julienschmidt/httprouter"
 )
 
@@ -96,6 +97,46 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 	return Item{id, title, persons, location, desc, date, end_date, end_time, all_day}
 }
 
+func UpdateCalendarFeed() {
+	// TODO: optimize sometime
+	cal := ics.NewCalendar()
+	cal.SetMethod(ics.MethodPublish)
+	cal.SetName("k2")
+
+	for _, item := range data.Items() {
+		event := cal.AddEvent(item.ID + "@k2.test")
+		event.SetSummary(item.Title)
+		event.SetDescription(item.Description)
+		event.SetLocation(item.Location)
+
+		if item.IsAllDay {
+			event.SetAllDayStartAt(item.Date)
+
+			if !item.EndDate.IsZero() {
+				event.SetAllDayEndAt(item.EndDate)
+			}
+		} else {
+			event.SetStartAt(item.Date)
+			// TODO handle end date/time
+		}
+
+		for _, pers := range item.Persons {
+			event.AddAttendee(pers)
+		}
+	}
+
+	file, err := os.Create("static/k2.ics")
+	if err != nil {
+		panic(err)
+	}
+
+	defer file.Close()
+
+	if err := cal.SerializeTo(file); err != nil {
+		panic(err)
+	}
+}
+
 func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	id := uuid.New().String()
 	item := parseItem(w, r, id)
@@ -104,6 +145,7 @@ func handleAdd(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 	}
 
 	data.Insert(item)
+	UpdateCalendarFeed()
 	http.Redirect(w, r, "/view/"+id, http.StatusSeeOther)
 }
 
@@ -115,6 +157,7 @@ func handleUpdate(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	}
 
 	data.Set(id, item)
+	UpdateCalendarFeed()
 	http.Redirect(w, r, "/view/"+id, http.StatusSeeOther)
 }
 
@@ -137,6 +180,7 @@ func handleAddPerson(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	if name != "" {
 		item.Persons = append(item.Persons, name)
 		data.Set(id, item)
+		UpdateCalendarFeed()
 	}
 
 	http.Redirect(w, r, "/view/"+id, http.StatusSeeOther)
@@ -150,6 +194,7 @@ func handleNew(w http.ResponseWriter, r *http.Request, _ rt.Params) {
 
 func handleDelete(w http.ResponseWriter, r *http.Request, ps rt.Params) {
 	data.Delete(ps.ByName("id"))
+	UpdateCalendarFeed()
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
