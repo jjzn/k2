@@ -18,6 +18,7 @@ var fns = template.FuncMap{
 	},
 	"formatTime":  formatTime,
 	"join":        strings.Join,
+	"split":       strings.Split,
 	"formatDates": formatDates,
 	"string":      getLocaleString,
 }
