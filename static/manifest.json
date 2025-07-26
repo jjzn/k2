@@ -6,27 +6,6 @@
             "type": "image/svg+xml"
         }
     ],
-    "shortcuts": [
-        {
-            "name": "Nueva entrada",
-            "short_name": "Nuevo",
-            "description": "Crea una nueva entrada visible para todos los usuarios de k2.",
-            "url": "/new"
-        },
-        {
-            "name": "Ver hoy",
-            "short_name": "Hoy",
-            "description": "Muestra todas las entradas de hoy.",
-            "url": "/today"
-        },
-        {
-            "name": "Ver esta semana",
-            "short_name": "Semana",
-            "description": "Muestra todas las entradas de esta semana.",
-            "url": "/this-week"
-        }
-    ],
     "display": "standalone",
-    "background_color": "#fff",
     "start_url": "/"
 }
