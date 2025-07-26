@@ -28,6 +28,8 @@ body {
 
 }
 
+a:visited { color: #00e; }
+
 header, main { padding: 1em; }
 nav { padding: 0 1em; }
 

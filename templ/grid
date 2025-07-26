@@ -1,8 +1,8 @@
 {{- template "layout" .}}
-{{- define "title"}}{{string "gridViewTitle"}}{{end}}
+{{- define "title"}}{{.MonthName}} {{.Year}}{{end}}
 {{- define "content"}}
     <main>
-        <h1 class="header-title"><a href="/date/{{.Prev.Year}}/{{.Prev.Month | printf "%d"}}">&larr;</a> {{.MonthName}} <a href="/date/{{.Next.Year}}/{{.Next.Month | printf "%d"}}">&rarr;</a></h1>
+        <h1 class="header-title"><a href="/date/{{.Prev.Year}}/{{.Prev.Month | printf "%d"}}">&larr;</a> {{.MonthName}} {{.Year}} <a href="/date/{{.Next.Year}}/{{.Next.Month | printf "%d"}}">&rarr;</a></h1>
 
         <section class="grid">
             <div><b>{{string "dayMon"}}</b></div>

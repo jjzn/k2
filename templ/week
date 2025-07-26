@@ -1,9 +1,8 @@
 {{- template "layout" .}}
-{{- define "title"}}{{string "listViewTitle"}}{{end}}
+{{- define "title"}}{{.Current.Year}} {{.Current.Week}}{{end}}
 {{- define "content"}}
-	<h1 class="header-title"><a href="/week/{{.Prev.Year}}/{{.Prev.Week}}">&larr;</a> {{.Current.Year}} {{.Current.Week}} <a href="/week/{{.Next.Year}}/{{.Next.Week}}">&rarr;</a></h1>
-
     <main class="list">
+        <h1 class="header-title"><a href="/week/{{.Prev.Year}}/{{.Prev.Week}}">&larr;</a> {{.Current.Year}} {{.Current.Week}} <a href="/week/{{.Next.Year}}/{{.Next.Week}}">&rarr;</a></h1>
     {{- range .Items}}
         <section class="item">
             <h2><a href="/view/{{.ID}}">{{.Title}}</a></h2>

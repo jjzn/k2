@@ -1,7 +1,7 @@
 const link = document.querySelector(`nav a[href="${location.pathname}"]`);
-link.classList.add('current');
 
-const text = location.pathname === '/'
-    ? 'Todas las entradas' : link.textContent;
-
-document.title = `${text} — k2`;
+// TODO: do something when we're on /
+if (link) { // Means we are on a special site, such as current month
+    link.classList.add('current');
+    document.title = `${link.textContent} — k2`;
+}

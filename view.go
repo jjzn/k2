@@ -169,12 +169,14 @@ func handleMonth(year int, month time.Month, w http.ResponseWriter) {
 		Prev      time.Time
 		Next      time.Time
 		MonthName string
+		Year      int
 		Filler    []int
 		Days      [][]Item
 	}{
 		now.AddDate(0, -1, 0),
 		now.AddDate(0, 1, 0),
 		formatMonth(month),
+		year,
 		make([]int, (now.Weekday()+6)%7),
 		days,
 	}
