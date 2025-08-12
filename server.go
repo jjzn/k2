@@ -98,7 +98,6 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 }
 
 func UpdateCalendarFeed() {
-	// TODO: optimize sometime
 	cal := ics.NewCalendar()
 	cal.SetMethod(ics.MethodPublish)
 	cal.SetName("k2")
@@ -108,6 +107,8 @@ func UpdateCalendarFeed() {
 		event.SetSummary(item.Title)
 		event.SetDescription(item.Description)
 		event.SetLocation(item.Location)
+		event.SetDtStampTime(time.Now())
+		event.SetURL("https://k2.tomte.cat/view/" + item.ID)
 
 		if item.IsAllDay {
 			event.SetAllDayStartAt(item.Date)
@@ -117,11 +118,24 @@ func UpdateCalendarFeed() {
 			}
 		} else {
 			event.SetStartAt(item.Date)
-			// TODO handle end date/time
+
+			year, month, day := item.Date.Date()
+			if !item.EndDate.IsZero() {
+				year, month, day = item.EndDate.Date()
+			}
+
+			hour := item.Date.Hour()
+			minute := item.Date.Minute()
+			if !item.EndTime.IsZero() {
+				hour = item.EndTime.Hour()
+				minute = item.EndTime.Minute()
+			}
+
+			event.SetEndAt(time.Date(year, month, day, hour, minute, 0, 0, time.Now().Location()))
 		}
 
 		for _, pers := range item.Persons {
-			event.AddAttendee(pers)
+			event.AddAttendee(pers) // TODO not working?
 		}
 	}
 
