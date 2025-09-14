@@ -8,7 +8,7 @@
         <title>{{block "title" .}}{{end}} — k2</title>
 
         <link rel="stylesheet" href="/static/main.css"/>
-        <link rel="icon" type="image/svg+xml" href="/static/icon.svg"/>
+        <!--<link rel="icon" type="image/svg+xml" href="/static/icon.svg"/>--> <!-- doesn't behave well with apple devices -->
         <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
         <link rel="manifest" href="/static/manifest.json"/>
