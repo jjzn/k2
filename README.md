@@ -21,6 +21,9 @@ binary, as well as install it to your GOPATH.
 Finally, k2 requires a database file to be initialized. This can be done by
 creating `data.json` containing `{}`.
 
+You may also set the `K2_SERVER_NAME` environment variable to the domain name
+of your server installation, e.g. `k2.example.com`.
+
 ## Locale options
 
 A list of preconfigured locale files can be found in `locales/`. To select one

@@ -16,8 +16,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/google/uuid"
 	"github.com/arran4/golang-ical"
+	"github.com/google/uuid"
 	rt "github.com/julienschmidt/httprouter"
 )
 
@@ -34,6 +34,8 @@ type Item struct {
 }
 
 var data DB
+
+var serverName string
 
 var entryForm = template.Must(
 	template.New("new").Funcs(fns).ParseFiles("templ/layout", "templ/new"))
@@ -103,18 +105,19 @@ func UpdateCalendarFeed() {
 	cal.SetName("k2")
 
 	for _, item := range data.Items() {
-		event := cal.AddEvent(item.ID + "@k2.test")
+		event := cal.AddEvent(item.ID) // email-style UIDs considered bad practice
 		event.SetSummary(item.Title)
 		event.SetDescription(item.Description)
 		event.SetLocation(item.Location)
 		event.SetDtStampTime(time.Now())
-		event.SetURL("https://k2.tomte.cat/view/" + item.ID)
+		event.SetURL("http://" + serverName + "/view/" + item.ID)
 
 		if item.IsAllDay {
 			event.SetAllDayStartAt(item.Date)
 
 			if !item.EndDate.IsZero() {
-				event.SetAllDayEndAt(item.EndDate)
+				// The DTEND property refers to the day AFTER the event
+				event.SetAllDayEndAt(item.EndDate.AddDate(0, 0, 1))
 			}
 		} else {
 			event.SetStartAt(item.Date)
@@ -135,7 +138,7 @@ func UpdateCalendarFeed() {
 		}
 
 		for _, pers := range item.Persons {
-			event.AddAttendee(pers) // TODO not working?
+			event.AddAttendee(pers + "@" + serverName)
 		}
 	}
 
@@ -290,6 +293,13 @@ func main() {
 	port := flag.String("p", "8020", "port number")
 	flag.Parse()
 
+	envServerName, ok := os.LookupEnv("K2_SERVER_NAME")
+	serverName = envServerName
+	if !ok {
+		serverName = "k2.example.com"
+	}
+
 	log.Println("listening on port", *port)
+	log.Println("server name is", serverName)
 	log.Fatal(http.ListenAndServe(":"+*port, r))
 }
