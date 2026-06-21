@@ -14,6 +14,7 @@ body {
     --bg: white;
     --gray: #eee;
     --gray-faded: #eee8;
+    --link-color: #00e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,13 +23,12 @@ body {
         --bg: black;
         --gray: #2a2a2a;
         --gray-faded: #2a2a2a88;
+        --link-color: #67f;
     }
-
-    a { color: #67f; }
 
 }
 
-a:visited { color: #00e; }
+a, a:visited { color: var(--link-color); }
 
 header, main { padding: 1em; }
 nav { padding: 0 1em; }
