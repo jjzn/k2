@@ -26,6 +26,7 @@ type Item struct {
 	Title       string    `json:"title"`
 	Persons     []string  `json:"pers"`
 	Location    string    `json:"loc"`
+	LocationURL string    `json:"locurl"`
 	Description string    `json:"desc"`
 	Date        time.Time `json:"date"`
 	EndDate     time.Time `json:"end_date"`
@@ -56,6 +57,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 
 	title := strings.TrimSpace(r.PostForm.Get("title"))
 	location := strings.TrimSpace(r.PostForm.Get("location"))
+	location_url := strings.TrimSpace(r.PostForm.Get("location_url")) // TODO: sanitize URLs
 	persons := strings.Split(r.PostForm.Get("persons"), ",")
 
 	for i, elem := range persons {
@@ -96,7 +98,7 @@ func parseItem(w http.ResponseWriter, r *http.Request, id string) Item {
 		end_time = time.Time{}
 	}
 
-	return Item{id, title, persons, location, desc, date, end_date, end_time, all_day}
+	return Item{id, title, persons, location, location_url, desc, date, end_date, end_time, all_day}
 }
 
 func UpdateCalendarFeed() {

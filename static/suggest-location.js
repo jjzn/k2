@@ -1,5 +1,6 @@
 const form = document.forms[0];
 const location_field = form['location'];
+const location_url_field = form['location_url'];
 const list = document.querySelector('#location-suggestions');
 
 const MAX_SUGGESTIONS = 3;
@@ -32,6 +33,7 @@ async function load_suggestions() {
         link.href = 'javascript:';
         link.addEventListener('click', () => {
             location_field.value = place.display_name;
+            location_url_field.value = `https://openstreetmap.org/${place.osm_type}/${place.osm_id}`; // TODO: clear URL when location is changed
             list.innerHTML = ''; // clear the suggestions list on click
         });
 

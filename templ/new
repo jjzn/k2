@@ -32,6 +32,8 @@
             <input type="text" name="location" value="{{.Location}}"/>
             <ul id="location-suggestions" hidden></ul>
 
+            <input type="hidden" name="location_url"/>
+
             <div class="vert child-flex" style="gap: 0 1rem">
                 <div>
                     <label for="date">{{string "labelDate"}}</label>
