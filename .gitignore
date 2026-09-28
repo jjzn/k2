@@ -1,5 +1,6 @@
 k2
 data.json
+*.db
 go.sum
 locale.go
 static/k2.ics
